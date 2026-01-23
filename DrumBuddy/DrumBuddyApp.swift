@@ -2,7 +2,7 @@
 //  DrumBuddyApp.swift
 //  DrumBuddy
 //
-//  Created by Sharad Mangalick on 1/23/26.
+//  A drumming practice app for kids
 //
 
 import SwiftUI
@@ -12,7 +12,8 @@ import SwiftData
 struct DrumBuddyApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            ProgressRecord.self,
+            PatternStats.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +26,7 @@ struct DrumBuddyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
         .modelContainer(sharedModelContainer)
     }
