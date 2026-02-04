@@ -52,12 +52,12 @@ class CalibrationSettings {
         }
     }
 
-    /// Default values
-    static let defaultOnsetThreshold: Double = 0.3
+    /// Default values - tuned for sensitivity to catch drum hits
+    static let defaultOnsetThreshold: Double = 0.15  // Lower threshold for better detection
     static let defaultTimingToleranceOverrideMs: Double = 0
-    static let defaultMicGainMultiplier: Double = 1.0
-    static let defaultNoiseFloor: Double = 0.01
-    static let defaultRefractoryPeriodMs: Double = 100
+    static let defaultMicGainMultiplier: Double = 1.5  // Higher gain for better mic sensitivity
+    static let defaultNoiseFloor: Double = 0.008  // Lower noise floor
+    static let defaultRefractoryPeriodMs: Double = 80  // Shorter refractory for faster patterns
     static let defaultTTSEnabled: Bool = true
 
     init() {

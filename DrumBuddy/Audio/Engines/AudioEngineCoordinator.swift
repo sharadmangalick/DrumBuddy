@@ -155,17 +155,19 @@ class AudioEngineCoordinator {
         state = .idle
     }
 
-    /// Configure audio session for playback only
+    /// Configure audio session for playback and recording
+    /// Using playAndRecord from the start to avoid session switching issues
     private func configurePlaybackSession() throws {
         let session = AVAudioSession.sharedInstance()
-        try session.setCategory(.playback, mode: .default)
+        try session.setCategory(.playAndRecord, mode: .measurement, options: [.defaultToSpeaker, .allowBluetooth])
         try session.setActive(true)
     }
 
-    /// Configure audio session for recording
+    /// Configure audio session for recording (same as playback now)
     private func configureRecordingSession() throws {
+        // Audio session already configured for playAndRecord
+        // Just ensure it's still active
         let session = AVAudioSession.sharedInstance()
-        try session.setCategory(.playAndRecord, mode: .measurement, options: [.defaultToSpeaker, .allowBluetooth])
         try session.setActive(true)
     }
 

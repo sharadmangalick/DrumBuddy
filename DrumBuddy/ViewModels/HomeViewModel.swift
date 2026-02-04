@@ -14,9 +14,19 @@ class HomeViewModel {
     /// Selected difficulty tier
     var selectedDifficulty: DifficultyTier = .beginner
 
-    /// Available patterns for selected difficulty
+    /// Generated patterns for each difficulty tier
+    private var generatedPatterns: [DifficultyTier: [RhythmPattern]] = [:]
+
+    /// Available patterns for selected difficulty (library + generated)
     var patterns: [RhythmPattern] {
-        PatternLibrary.patterns(for: selectedDifficulty)
+        let libraryPatterns = PatternLibrary.patterns(for: selectedDifficulty)
+        let generated = generatedPatterns[selectedDifficulty] ?? []
+        return libraryPatterns + generated
+    }
+
+    /// Number of generated patterns for current difficulty
+    var generatedCount: Int {
+        generatedPatterns[selectedDifficulty]?.count ?? 0
     }
 
     /// Whether calibration sheet is shown
@@ -24,6 +34,34 @@ class HomeViewModel {
 
     /// Whether permission alert is shown
     var showPermissionAlert = false
+
+    /// Generate a new random pattern for the current difficulty
+    func generateNewPattern() {
+        let newPattern = PatternGenerator.generate(for: selectedDifficulty)
+        if generatedPatterns[selectedDifficulty] == nil {
+            generatedPatterns[selectedDifficulty] = []
+        }
+        generatedPatterns[selectedDifficulty]?.append(newPattern)
+    }
+
+    /// Generate multiple patterns at once
+    func generatePatterns(count: Int) {
+        let newPatterns = PatternGenerator.generateBatch(count: count, for: selectedDifficulty)
+        if generatedPatterns[selectedDifficulty] == nil {
+            generatedPatterns[selectedDifficulty] = []
+        }
+        generatedPatterns[selectedDifficulty]?.append(contentsOf: newPatterns)
+    }
+
+    /// Clear all generated patterns for current difficulty
+    func clearGeneratedPatterns() {
+        generatedPatterns[selectedDifficulty] = []
+    }
+
+    /// Clear all generated patterns for all difficulties
+    func clearAllGeneratedPatterns() {
+        generatedPatterns = [:]
+    }
 
     /// Get stats summary for a difficulty tier
     func statsSummary(for difficulty: DifficultyTier, stats: [PatternStats]) -> (completed: Int, total: Int) {

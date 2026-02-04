@@ -92,6 +92,67 @@ struct PatternLibrary {
                 Beat(positionInBeats: 3)
             ],
             suggestedBPM: 60
+        ),
+
+        // Two beats - simplest
+        RhythmPattern(
+            name: "Knock Knock",
+            emoji: "🚪",
+            difficulty: .beginner,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 1)
+            ],
+            suggestedBPM: 50
+        ),
+
+        // Beats 1 and 4
+        RhythmPattern(
+            name: "Bookends",
+            emoji: "📚",
+            difficulty: .beginner,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 55
+        ),
+
+        // Just beat 1
+        RhythmPattern(
+            name: "One Big Boom",
+            emoji: "💥",
+            difficulty: .beginner,
+            beats: [
+                Beat(positionInBeats: 0)
+            ],
+            suggestedBPM: 50
+        ),
+
+        // Beats 2, 3, 4
+        RhythmPattern(
+            name: "Ready Set Go",
+            emoji: "🏃",
+            difficulty: .beginner,
+            beats: [
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 55
+        ),
+
+        // Beats 1, 3, 4
+        RhythmPattern(
+            name: "Skip a Beat",
+            emoji: "⏭️",
+            difficulty: .beginner,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 58
         )
     ]
 
@@ -161,6 +222,70 @@ struct PatternLibrary {
                 Beat(positionInBeats: 3)
             ],
             suggestedBPM: 65
+        ),
+
+        // Just beats 1 and 2
+        RhythmPattern(
+            name: "Bumblebee",
+            emoji: "🐝",
+            difficulty: .easyPeasy,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 1)
+            ],
+            suggestedBPM: 60
+        ),
+
+        // Beats 1, 2, 4
+        RhythmPattern(
+            name: "Caterpillar",
+            emoji: "🐛",
+            difficulty: .easyPeasy,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 58
+        ),
+
+        // Beats 2 and 4 (backbeat)
+        RhythmPattern(
+            name: "Snare Shake",
+            emoji: "🎵",
+            difficulty: .easyPeasy,
+            beats: [
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 62
+        ),
+
+        // All four
+        RhythmPattern(
+            name: "Tick Tock",
+            emoji: "⏰",
+            difficulty: .easyPeasy,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 58
+        ),
+
+        // Beats 1, 3, 4
+        RhythmPattern(
+            name: "Frog Jump",
+            emoji: "🐸",
+            difficulty: .easyPeasy,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 60
         )
     ]
 
@@ -239,6 +364,78 @@ struct PatternLibrary {
                 Beat(positionInBeats: 3)
             ],
             suggestedBPM: 70
+        ),
+
+        // Quick doubles
+        RhythmPattern(
+            name: "Ping Pong",
+            emoji: "🏓",
+            difficulty: .gettingGood,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.5),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 2.5)
+            ],
+            suggestedBPM: 65
+        ),
+
+        // Steady eighths
+        RhythmPattern(
+            name: "Train Chug",
+            emoji: "🚂",
+            difficulty: .gettingGood,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.5),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 1.5),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 2.5)
+            ],
+            suggestedBPM: 62
+        ),
+
+        // Swing feel
+        RhythmPattern(
+            name: "Jazz Cat",
+            emoji: "🐱",
+            difficulty: .gettingGood,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 1.5),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 68
+        ),
+
+        // Syncopated
+        RhythmPattern(
+            name: "Skateboard",
+            emoji: "🛹",
+            difficulty: .gettingGood,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 1.5),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 70
+        ),
+
+        // Off-beat heavy
+        RhythmPattern(
+            name: "Reggae Vibe",
+            emoji: "🌴",
+            difficulty: .gettingGood,
+            beats: [
+                Beat(positionInBeats: 0.5),
+                Beat(positionInBeats: 1.5),
+                Beat(positionInBeats: 2.5),
+                Beat(positionInBeats: 3.5)
+            ],
+            suggestedBPM: 65
         )
     ]
 
@@ -324,6 +521,87 @@ struct PatternLibrary {
                 Beat(positionInBeats: 3)
             ],
             suggestedBPM: 78
+        ),
+
+        // Heavy syncopation
+        RhythmPattern(
+            name: "Breakdance",
+            emoji: "🕺",
+            difficulty: .rockStar,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.5),
+                Beat(positionInBeats: 1.5),
+                Beat(positionInBeats: 2.5),
+                Beat(positionInBeats: 3),
+                Beat(positionInBeats: 3.5)
+            ],
+            suggestedBPM: 72
+        ),
+
+        // Metal-style
+        RhythmPattern(
+            name: "Thunder Storm",
+            emoji: "⛈️",
+            difficulty: .rockStar,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.5),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 2.5),
+                Beat(positionInBeats: 3),
+                Beat(positionInBeats: 3.5)
+            ],
+            suggestedBPM: 75
+        ),
+
+        // Punk energy
+        RhythmPattern(
+            name: "Skatepunk",
+            emoji: "🤘",
+            difficulty: .rockStar,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.5),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 1.5),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 80
+        ),
+
+        // Hip hop groove
+        RhythmPattern(
+            name: "Boom Bap",
+            emoji: "🎧",
+            difficulty: .rockStar,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 1.5),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 3),
+                Beat(positionInBeats: 3.5)
+            ],
+            suggestedBPM: 70
+        ),
+
+        // Latin feel
+        RhythmPattern(
+            name: "Salsa Fire",
+            emoji: "🌶️",
+            difficulty: .rockStar,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.5),
+                Beat(positionInBeats: 1.5),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 2.5),
+                Beat(positionInBeats: 3)
+            ],
+            suggestedBPM: 76
         )
     ]
 
@@ -420,6 +698,101 @@ struct PatternLibrary {
                 Beat(positionInBeats: 3.5)
             ],
             suggestedBPM: 85
+        ),
+
+        // Jazz complexity
+        RhythmPattern(
+            name: "Jazz Master",
+            emoji: "🎷",
+            difficulty: .drumHero,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.67),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 1.33),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 2.5),
+                Beat(positionInBeats: 3),
+                Beat(positionInBeats: 3.67)
+            ],
+            suggestedBPM: 78
+        ),
+
+        // Afrobeat inspired
+        RhythmPattern(
+            name: "African Sun",
+            emoji: "☀️",
+            difficulty: .drumHero,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.33),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 1.5),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 2.67),
+                Beat(positionInBeats: 3),
+                Beat(positionInBeats: 3.5)
+            ],
+            suggestedBPM: 82
+        ),
+
+        // Polyrhythm feel
+        RhythmPattern(
+            name: "Mind Bender",
+            emoji: "🧠",
+            difficulty: .drumHero,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.5),
+                Beat(positionInBeats: 0.67),
+                Beat(positionInBeats: 1.33),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 2.33),
+                Beat(positionInBeats: 3),
+                Beat(positionInBeats: 3.5)
+            ],
+            suggestedBPM: 75
+        ),
+
+        // Speed challenge
+        RhythmPattern(
+            name: "Speed Demon",
+            emoji: "👹",
+            difficulty: .drumHero,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.33),
+                Beat(positionInBeats: 0.67),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 1.33),
+                Beat(positionInBeats: 1.67),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 2.5),
+                Beat(positionInBeats: 3),
+                Beat(positionInBeats: 3.5)
+            ],
+            suggestedBPM: 88
+        ),
+
+        // Final boss
+        RhythmPattern(
+            name: "Legendary",
+            emoji: "⚡",
+            difficulty: .drumHero,
+            beats: [
+                Beat(positionInBeats: 0),
+                Beat(positionInBeats: 0.33),
+                Beat(positionInBeats: 0.5),
+                Beat(positionInBeats: 1),
+                Beat(positionInBeats: 1.33),
+                Beat(positionInBeats: 1.67),
+                Beat(positionInBeats: 2),
+                Beat(positionInBeats: 2.5),
+                Beat(positionInBeats: 2.67),
+                Beat(positionInBeats: 3),
+                Beat(positionInBeats: 3.5)
+            ],
+            suggestedBPM: 90
         )
     ]
 }

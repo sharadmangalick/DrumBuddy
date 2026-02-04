@@ -136,9 +136,53 @@ struct HomeView: View {
                         }
                     )
                 }
+
+                // Generate new pattern button
+                generatePatternButton
             }
             .padding(.horizontal)
         }
+    }
+
+    private var generatePatternButton: some View {
+        Button {
+            HapticFeedback.light()
+            viewModel.generateNewPattern()
+        } label: {
+            HStack(spacing: 16) {
+                ZStack {
+                    Circle()
+                        .fill(Color.blue.opacity(0.2))
+                        .frame(width: 50, height: 50)
+
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 28))
+                        .foregroundColor(.blue)
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Generate New Pattern")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+
+                    Text("Create a random \(viewModel.selectedDifficulty.displayName) pattern")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+
+                Spacer()
+
+                Image(systemName: "sparkles")
+                    .font(.title2)
+                    .foregroundColor(.yellow)
+            }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.blue.opacity(0.5), style: StrokeStyle(lineWidth: 2, dash: [8, 4]))
+            )
+        }
+        .buttonStyle(.plain)
     }
 
     private var quickStatsSection: some View {
