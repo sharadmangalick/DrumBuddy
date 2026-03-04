@@ -85,13 +85,13 @@ struct ResultsView: View {
         }
         .padding()
         .overlay {
-            if showConfetti && result.starRating >= 3 {
+            if showConfetti && result.starRating >= 2 {
                 ConfettiView()
                     .allowsHitTesting(false)
             }
         }
         .onAppear {
-            if result.starRating >= 3 {
+            if result.starRating >= 2 {
                 showConfetti = true
             }
         }

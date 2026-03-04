@@ -36,6 +36,9 @@ class AudioEngineCoordinator {
     /// Callback when recording completes
     var onRecordingComplete: (([DetectedHit]) -> Void)?
 
+    /// Callback for real-time hit feedback (called on each detected hit)
+    var onHitFeedback: (() -> Void)?
+
     /// Recording timer
     private var recordingTimer: Timer?
 
@@ -49,6 +52,7 @@ class AudioEngineCoordinator {
     private func setupCallbacks() {
         micEngine.onHitDetected = { [weak self] hit in
             self?.currentHits.append(hit)
+            self?.onHitFeedback?()
         }
 
         micEngine.onLevelUpdate = { [weak self] level in

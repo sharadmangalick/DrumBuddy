@@ -85,15 +85,6 @@ struct PracticeView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if viewModel.state != .ready {
-                    Button("Stop") {
-                        viewModel.stop()
-                    }
-                }
-            }
-        }
         .onDisappear {
             viewModel.stop()
         }
@@ -167,12 +158,23 @@ struct PracticeView: View {
         case .recording:
             VStack(spacing: 16) {
                 CircularLevelIndicator(level: viewModel.audioLevel, size: 120)
+                    .overlay {
+                        Circle()
+                            .fill(Color.green.opacity(viewModel.hitFlash ? 0.4 : 0))
+                            .frame(width: 140, height: 140)
+                            .animation(.easeOut(duration: 0.15), value: viewModel.hitFlash)
+                    }
 
                 HStack {
                     RecordingPulse()
                     Text("Recording...")
                         .font(.headline)
                 }
+
+                Text("Hits: \(viewModel.hitCount)")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundColor(.green)
 
                 Text("Play the pattern on your drums!")
                     .font(.subheadline)
@@ -210,6 +212,28 @@ struct PracticeView: View {
                         action: viewModel.startPractice
                     )
                 }
+            }
+
+            if viewModel.state == .listening || viewModel.state == .countingIn || viewModel.state == .recording {
+                Button(action: {
+                    HapticFeedback.medium()
+                    viewModel.stop()
+                }) {
+                    HStack(spacing: 10) {
+                        Image(systemName: "stop.fill")
+                            .font(.title2)
+                        Text("Stop")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 18)
+                    .background(Color.red.gradient)
+                    .foregroundColor(.white)
+                    .clipShape(Capsule())
+                    .shadow(color: .red.opacity(0.4), radius: 8, x: 0, y: 4)
+                }
+                .buttonStyle(.plain)
             }
         }
     }

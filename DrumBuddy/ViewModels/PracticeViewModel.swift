@@ -42,6 +42,12 @@ class PracticeViewModel {
     /// Current session result (after scoring)
     private(set) var currentResult: SessionResult?
 
+    /// Flash indicator when a hit is detected
+    var hitFlash: Bool = false
+
+    /// Running count of detected hits during recording
+    private(set) var hitCount: Int = 0
+
     /// Current audio level (for visualization)
     var audioLevel: Float {
         audioCoordinator.audioLevel
@@ -77,6 +83,16 @@ class PracticeViewModel {
 
         audioCoordinator.playbackEngine.onBeatPlayed = { [weak self] index in
             self?.currentBeatIndex = index
+        }
+
+        audioCoordinator.onHitFeedback = { [weak self] in
+            guard let self else { return }
+            self.hitCount += 1
+            self.hitFlash = true
+            HapticFeedback.beatHit()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                self.hitFlash = false
+            }
         }
     }
 
@@ -116,6 +132,7 @@ class PracticeViewModel {
 
         currentResult = nil
         currentBeatIndex = -1
+        hitCount = 0
         applyCalibrationSettings()
 
         state = .countingIn
