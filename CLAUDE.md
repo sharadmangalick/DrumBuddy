@@ -72,6 +72,7 @@ This project uses **PBXFileSystemSynchronizedRootGroup** (Xcode 16+). This means
 
 ## Git Workflow
 - **Commit regularly** after each logical change or fix — don't let work accumulate uncommitted
+- **Always push** after committing to keep local and remote in sync
 - Run `./sync.sh build` before committing to verify changes compile
 - Group related changes into a single commit, but don't batch unrelated fixes together
 
