@@ -97,10 +97,16 @@ class AudioEngineCoordinator {
         try configurePlaybackSession()
         try playbackEngine.start()
 
-        // Calculate timing
-        let countInDuration = 120.0 / Double(bpm) // 2 beats
+        // Calculate timing — must match AudioPlaybackEngine's scheduling:
+        // playback adds 0.1s initial delay + 2 beats of count-in
+        let beatDuration = 60.0 / Double(bpm)
+        let countInDuration = 0.1 + (2.0 * beatDuration) // Match playback engine's 0.1s offset + 2 beats
         let patternDuration = pattern.durationInSeconds(atBPM: bpm)
         let recordingDuration = patternDuration + 0.5 // Add buffer
+
+        #if DEBUG
+        print("[Timing] BPM: \(bpm), beatDuration: \(beatDuration)s, countIn: \(countInDuration)s, patternDuration: \(patternDuration)s")
+        #endif
 
         // Start count-in
         state = .countingIn
@@ -108,7 +114,11 @@ class AudioEngineCoordinator {
         playbackEngine.playPattern(pattern, atBPM: bpm, includeCountIn: true)
 
         // Schedule recording to start after count-in
-        DispatchQueue.main.asyncAfter(deadline: .now() + countInDuration) { [weak self] in
+        let recordingStartTime = DispatchTime.now() + countInDuration
+        DispatchQueue.main.asyncAfter(deadline: recordingStartTime) { [weak self] in
+            #if DEBUG
+            print("[Timing] Recording started — expected delay: \(countInDuration)s")
+            #endif
             self?.startRecording(duration: recordingDuration)
         }
     }
