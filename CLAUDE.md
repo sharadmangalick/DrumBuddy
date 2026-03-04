@@ -70,6 +70,11 @@ This project uses **PBXFileSystemSynchronizedRootGroup** (Xcode 16+). This means
 - Deleted/renamed files are **automatically reflected** - no pbxproj edits needed
 - Just create/edit/delete `.swift` files and Xcode picks them up
 
+## Git Workflow
+- **Commit regularly** after each logical change or fix — don't let work accumulate uncommitted
+- Run `./sync.sh build` before committing to verify changes compile
+- Group related changes into a single commit, but don't batch unrelated fixes together
+
 ## Testing
 - Unit tests go in `DrumBuddyTests/`
 - UI tests go in `DrumBuddyUITests/`

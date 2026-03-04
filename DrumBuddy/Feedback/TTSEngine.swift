@@ -16,6 +16,9 @@ class TTSEngine {
     private var pitch: Float = 1.1  // Slightly higher pitch for friendliness
     private var volume: Float = 1.0
 
+    /// Cached best available voice
+    private var selectedVoice: AVSpeechSynthesisVoice?
+
     /// Whether TTS is enabled
     var isEnabled: Bool = true
 
@@ -27,6 +30,29 @@ class TTSEngine {
     init() {
         // Use a friendly voice
         rate = AVSpeechUtteranceDefaultSpeechRate * 0.9 // Slightly slower for kids
+        selectedVoice = Self.findBestVoice()
+    }
+
+    /// Find the highest quality en-US voice available on this device.
+    /// Prefers premium > enhanced > default, and favors female voices for a warm, friendly tone.
+    private static func findBestVoice() -> AVSpeechSynthesisVoice? {
+        let allVoices = AVSpeechSynthesisVoice.speechVoices()
+        let enUSVoices = allVoices.filter { $0.language == "en-US" }
+
+        // Try premium quality first, then enhanced, then default
+        if let premium = enUSVoices.first(where: { $0.quality == .premium }) {
+            return premium
+        }
+        if let enhanced = enUSVoices.first(where: { $0.quality == .enhanced }) {
+            return enhanced
+        }
+
+        // Fall back to default quality but prefer Samantha (warm, friendly)
+        if let samantha = enUSVoices.first(where: { $0.identifier.contains("Samantha") }) {
+            return samantha
+        }
+
+        return AVSpeechSynthesisVoice(language: "en-US")
     }
 
     /// Speak a message
@@ -43,8 +69,7 @@ class TTSEngine {
         utterance.pitchMultiplier = pitch
         utterance.volume = volume
 
-        // Try to use a friendly voice
-        if let voice = AVSpeechSynthesisVoice(language: "en-US") {
+        if let voice = selectedVoice {
             utterance.voice = voice
         }
 
