@@ -111,15 +111,6 @@ class PracticeViewModel {
 
         do {
             try audioCoordinator.listenToPattern(pattern, atBPM: bpm)
-
-            // Calculate duration and return to ready state
-            let duration = pattern.durationInSeconds(atBPM: bpm)
-            DispatchQueue.main.asyncAfter(deadline: .now() + duration + 0.2) { [weak self] in
-                if self?.state == .listening {
-                    self?.state = .ready
-                    self?.currentBeatIndex = -1
-                }
-            }
         } catch {
             errorMessage = "Failed to play pattern: \(error.localizedDescription)"
             state = .ready

@@ -79,6 +79,7 @@ class AudioEngineCoordinator {
         try playbackEngine.start()
 
         state = .playingPattern
+        playbackEngine.shouldLoop = true
         playbackEngine.playPattern(pattern, atBPM: bpm, includeCountIn: false)
 
         playbackEngine.onPlaybackComplete = { [weak self] in
@@ -103,6 +104,7 @@ class AudioEngineCoordinator {
 
         // Start count-in
         state = .countingIn
+        playbackEngine.shouldLoop = false
         playbackEngine.playPattern(pattern, atBPM: bpm, includeCountIn: true)
 
         // Schedule recording to start after count-in
@@ -154,6 +156,7 @@ class AudioEngineCoordinator {
         recordingTimer?.invalidate()
         recordingTimer = nil
 
+        playbackEngine.shouldLoop = false
         playbackEngine.stopPlayback()
         _ = micEngine.stopRecording()
         state = .idle

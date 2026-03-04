@@ -23,6 +23,13 @@ class AudioPlaybackEngine {
     /// Playback state
     private(set) var isPlaying = false
 
+    /// Whether to loop playback continuously
+    var shouldLoop = false
+
+    /// Stored pattern/bpm for looping replay
+    private var currentPattern: RhythmPattern?
+    private var currentBPM: Int = 0
+
     /// Callback for each beat played (for visual sync)
     var onBeatPlayed: ((Int) -> Void)?
 
@@ -72,6 +79,8 @@ class AudioPlaybackEngine {
         guard !isPlaying else { return }
 
         isPlaying = true
+        currentPattern = pattern
+        currentBPM = bpm
 
         // Calculate timing
         let secondsPerBeat = 60.0 / Double(bpm)
@@ -134,8 +143,13 @@ class AudioPlaybackEngine {
 
         playerNode.scheduleBuffer(silentBuffer, at: endTime, options: []) { [weak self] in
             DispatchQueue.main.async {
-                self?.isPlaying = false
-                self?.onPlaybackComplete?()
+                guard let self else { return }
+                self.isPlaying = false
+                if self.shouldLoop, let pattern = self.currentPattern {
+                    self.playPattern(pattern, atBPM: self.currentBPM, includeCountIn: false)
+                } else {
+                    self.onPlaybackComplete?()
+                }
             }
         }
 
